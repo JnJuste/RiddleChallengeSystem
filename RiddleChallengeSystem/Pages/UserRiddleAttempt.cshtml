@@ -1,0 +1,37 @@
+﻿@page
+@model RiddleChallengeSystem.Pages.UserRiddleAttemptModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Riddle Attempt</title>
+</head>
+<body>
+    <h1>User Riddle Attempt</h1>
+
+    <form method="post">
+        <div class="form-group mb-3">
+            <label for="userRiddleAtt.UserID">Select User:</label>
+            <select asp-for="userRiddleAtt.UserID" asp-items="Model.UserNameList"></select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="userRiddleAtt.RiddleID">Select Riddle:</label>
+            <select asp-for="userRiddleAtt.RiddleID" asp-items="Model.RiddleList"></select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="userRiddleAtt.UserAnswer">Your Answer:</label>
+            <input type="text" asp-for="userRiddleAtt.UserAnswer" />
+        </div>
+
+        <button type="submit">Submit Answer</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <p>@Model.Message</p>
+    }
+</body>
+</html>

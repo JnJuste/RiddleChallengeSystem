@@ -1,0 +1,57 @@
+﻿@page
+@model RiddleChallengeSystem.Pages.RegisterUserModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    .custom-input {
+        width: 700px; /* Adjust the width as needed */
+    }
+</style>
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-info">
+            <span>@Model.Message</span>
+        </div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-3">
+            <label for="UserNames">USERNAME:</label>
+            <input type="text" class="form-control custom-input" id="UserNames" name="UserNames" placeholder="ME YOU" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Email">EMAIL:</label>
+            <input type="email" class="form-control custom-input" id="Email" name="Email" placeholder="example@riddle.com" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Password">PASSWORD:</label>
+            <input type="password" class="form-control custom-input" id="Password" name="Password" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="Role">USER ROLE:</label>
+            <select class="form-control custom-input" id="Role" name="Role" required>
+                <option value="RIDDLER">RIDDLER</option>
+                <option value="PLAYER">PLAYER</option>
+            </select>
+        </div>
+
+        <div>
+        <button type="submit" class="btn btn-primary">REGISTER</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

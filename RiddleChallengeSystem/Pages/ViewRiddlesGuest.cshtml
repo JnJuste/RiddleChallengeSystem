@@ -1,0 +1,28 @@
+﻿@page
+@model RiddleChallengeSystem.Pages.ViewRiddlesGuestModel
+@{
+}
+
+<div class="container">
+    <br />
+    <h2>LIST OF RIDDLES</h2>
+
+    <div class="mb-3">
+        <a class='btn btn-danger btn-sm' href="/Index">GO BACK HOME</a>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model.listRiddles)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Riddle ID: @item.RiddleID</h5>
+                        <p class="card-text"><strong>Question:</strong> @item.Question</p>
+                        <p class="card-text" hidden><strong>Answer:</strong> @item.Answer</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

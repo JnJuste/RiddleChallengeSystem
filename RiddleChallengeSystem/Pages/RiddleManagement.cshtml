@@ -1,0 +1,35 @@
+﻿@page
+@model RiddleChallengeSystem.Pages.RiddleManagementModel
+@{
+}
+
+<div class="container">
+    @if (@Model.message.Length > 1)
+    {
+        <div class="alert alert-info">
+            <span>@Model.message</span>
+        </div>
+    }
+
+    <h2 class="text-center label">ADD RIDDLE DETAILS</h2>
+    <a class='btn btn-primary btn-sm' href='/ViewRiddles'>VIEW RIDDLES</a>
+    <a class='btn btn-danger btn-sm' href='/Login'>LOGOUT</a>
+    <hr />
+
+    <form method="POST" class="mt-4" asp-page-handler="OnPost">
+        @Html.AntiForgeryToken()
+        <div class="form-group mb-3">
+            <label for="question">RIDDLE QUESTION:</label>
+            <input type="text" class="form-control" name="question" placeholder="Riddle Question" value="@Model.createRiddle.Question">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="answer">RIDDLE ANSWER:</label>
+            <input type="text" class="form-control" name="answer" placeholder="Riddle Answer" value="@Model.createRiddle.Answer">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+
+    </form>
+</div>

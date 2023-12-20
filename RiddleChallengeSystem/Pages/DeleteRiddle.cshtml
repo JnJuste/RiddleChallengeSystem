@@ -1,0 +1,26 @@
+﻿@page
+@model RiddleChallengeSystem.Pages.DeleteRiddleModel
+@using System.Data.SqlClient;
+@{
+    String riddleID = Request.Query["RiddleID"];
+    try
+    {
+        string conString = "Data Source=JN-JUSTE\\SQLEXPRESS;Initial Catalog=RiddlesChallengeSystemDB;Integrated Security=True;Encrypt=False";
+        using (SqlConnection con = new SqlConnection(conString))
+        {
+            con.Open();
+            string sqlQuery = "DELETE FROM RiddleTable WHERE RiddleID = @RiddleID";
+            using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
+            {
+                cmd.Parameters.AddWithValue("@RiddleID", riddleID);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Error: " + ex.Message);
+    }
+    Response.Redirect("/ViewRiddles");
+}
